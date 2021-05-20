@@ -285,6 +285,16 @@ class _CreateAccountState extends State<CreateAccount> {
                 color: Colors.black,
               ),
             ),
+             title: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Image.asset(
+                    'assets/logos/LogoApp.png',
+                    fit: BoxFit.contain,
+                    height: 70.0,
+                  ),
+                ],
+              ),  
       ),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,

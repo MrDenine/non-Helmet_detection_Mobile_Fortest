@@ -44,13 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-        color: Colors.grey[300],
-      border: Border.all(
-        color: Colors.grey[300],
-        width: 2,
-      ),
-      borderRadius: BorderRadius.circular(10),
-    ),
+            color: Colors.grey[300],
+            border: Border.all(
+              color: Colors.grey[300],
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
           height: 45.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
@@ -85,14 +85,14 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(height: 2.0),
         Container(
           alignment: Alignment.centerLeft,
-           decoration: BoxDecoration(
-        color: Colors.grey[300],
-      border: Border.all(
-        color: Colors.grey[300],
-        width: 2,
-      ),
-      borderRadius: BorderRadius.circular(10),
-    ),
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            border: Border.all(
+              color: Colors.grey[300],
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
           height: 45.0,
           child: TextField(
             obscureText: true,
@@ -124,13 +124,13 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: EdgeInsets.only(right: 0.0),
         child: Text(
           'Forgot Password?',
-        style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: Colors.grey),
         ),
       ),
     );
   }
 
- /* Widget _buildRememberMeCheckbox() {
+  /* Widget _buildRememberMeCheckbox() {
     return Container(
       height: 20.0,
       child: Row(
@@ -287,7 +287,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFFFFFFFF), 
+                      Color(0xFFFFFFFF),
                     ],
                     stops: [0.1, 0.4, 0.7, 0.9],
                   ),
@@ -304,43 +304,43 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                     Padding(   
-                     padding: const EdgeInsets.only(top: 0.0),
-                      child: Center(
-                     child: Container(
-                    width: 200,
-                    height: 150,
-                    /*decoration: BoxDecoration(
+                      Padding(
+                        padding: const EdgeInsets.only(top: 0.0),
+                        child: Center(
+                          child: Container(
+                              width: 200,
+                              height: 150,
+                              /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('assets/logos/LogoApp.png')),
+                              child: Image.asset('assets/logos/LogoApp.png')),
+                        ),
                       ),
-                      ),          
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [  
-                        Text(
-                        'Helmet',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'OpenSans',
-                          fontSize: 15.0,
-                          height: 0.25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'Capture',
-                        style: TextStyle(
-                          color: Colors.amber,
-                          fontFamily: 'OpenSans',
-                          fontSize: 15.0,
-                          height: 0.25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      ],
+                        children: [
+                          Text(
+                            'Helmet',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'OpenSans',
+                              fontSize: 15.0,
+                              height: 0.25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Capture',
+                            style: TextStyle(
+                              color: Colors.amber,
+                              fontFamily: 'OpenSans',
+                              fontSize: 15.0,
+                              height: 0.25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                       Text(
                         'Sign In',
@@ -351,7 +351,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 2.5,
                           fontWeight: FontWeight.bold,
                         ),
-                      ),       
+                      ),
                       SizedBox(height: 5.0),
                       _buildEmailTF(),
                       SizedBox(
@@ -359,8 +359,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       _buildPasswordTF(),
                       _buildForgotPasswordBtn(),
-                    //  _buildRememberMeCheckbox(),
-                   // SizedBox(height: 0.0),
+                      //  _buildRememberMeCheckbox(),
+                      // SizedBox(height: 0.0),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
                       _buildSocialBtnRow(),
