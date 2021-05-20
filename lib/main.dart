@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helmet_detection_app/login.dart';
+import 'capture.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Login UI',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: TfliteHome(),
     );
   }
 }
