@@ -5,6 +5,8 @@ import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image/image.dart' as img;
 
+//สำหรับการเทสระบบตรวจจับ
+
 const String ssd = "SSD MobileNet";
 const String yolo = "Tiny YOLOv2";
 
@@ -141,7 +143,6 @@ class TfliteHomeState extends State<TfliteHome> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     List<Widget> stackChildren = [];
-
     stackChildren.add(Positioned(
       top: 0.0,
       left: 0.0,
@@ -155,7 +156,6 @@ class TfliteHomeState extends State<TfliteHome> {
         child: CircularProgressIndicator(),
       ));
     }
-
     return Scaffold(
       appBar: AppBar(
         title: Text("TFlite Demo"),
