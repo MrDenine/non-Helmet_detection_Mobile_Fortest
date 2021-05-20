@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helmet_detection_app/login.dart';
+import 'create-new-account.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +11,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Login UI',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      //home: LoginScreen(),
+       initialRoute: '/', 
+            routes: {
+                '/': (context) => LoginScreen(),
+                '/second': (context) => CreateAccount(),
+            },
     );
   }
 }
