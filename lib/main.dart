@@ -1,23 +1,25 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:helmet_detection_app/login.dart';
-import 'create-new-account.dart';
+import 'package:helmet_detection_app/HomeScreen.dart';
 
-void main() => runApp(MyApp());
+List<CameraDescription> cameras;
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+Future<Null> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    print('Error $e.code \n Error Message: $e.message');
+  }
+
+  runApp(new MainScreen());
+}
+
+class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Login UI',
-      debugShowCheckedModeBanner: false,
-      //home: LoginScreen(),
-       initialRoute: '/', 
-            routes: {
-                '/': (context) => LoginScreen(),
-                '/second': (context) => CreateAccount(),
-            },
+      home: HomeScreen(cameras),
     );
   }
 }
-
