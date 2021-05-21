@@ -37,9 +37,9 @@ class _CreateAccountState extends State<CreateAccount> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 5.0),
+              contentPadding: EdgeInsets.only(top: 7.0),
               prefixIcon: Icon(
-                Icons.email,
+                Icons.person,
                 color: Colors.grey,
               ),
               hintText: 'Enter your Name',
@@ -79,9 +79,9 @@ class _CreateAccountState extends State<CreateAccount> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 5.0),
+              contentPadding: EdgeInsets.only(top: 7.0),
               prefixIcon: Icon(
-                Icons.email,
+                Icons.person,
                 color: Colors.grey,
               ),
               hintText: 'Enter your Surname',
@@ -121,7 +121,7 @@ class _CreateAccountState extends State<CreateAccount> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 5.0),
+              contentPadding: EdgeInsets.only(top: 7.0),
               prefixIcon: Icon(
                 Icons.email,
                 color: Colors.grey,
