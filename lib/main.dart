@@ -2,6 +2,9 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:helmet_detection_app/HomeScreen.dart';
 
+import 'create-new-account.dart';
+import 'login.dart';
+
 List<CameraDescription> cameras;
 
 Future<Null> main() async {
@@ -19,7 +22,12 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(cameras),
+     initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
+            routes: {
+                '/': (context) => LoginScreen(),
+                '/second': (context) => CreateAccount(),
+            },
+      //home: HomeScreen(cameras),
     );
   }
 }
