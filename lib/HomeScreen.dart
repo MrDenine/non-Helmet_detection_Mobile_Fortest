@@ -28,8 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_model) {
       case ssd:
         result = await Tflite.loadModel(
-            labels: "assets/ssd_mobilenet.txt",
-            model: "assets/ssd_mobilenet.tflite");
+            labels: "assets/tflite/ssd_mobilenet.txt",
+            model: "assets/tflite/ssd_mobilenet.tflite");
     }
     print(result);
   }
