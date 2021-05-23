@@ -286,13 +286,15 @@ class _CreateAccountState extends State<CreateAccount> {
               ),
             ),
              title: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+               // mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset(
-                    'assets/logos/LogoApp.png',
-                    fit: BoxFit.contain,
-                    height: 70.0,
-                  ),
+                  SizedBox(width: 80),
+                  Column(
+                    children: [ 
+                      Text('Helmet',style: TextStyle(color: Colors.black),),    
+                      Text('Capture'),
+                    ],
+                  )
                 ],
               ),  
       ),

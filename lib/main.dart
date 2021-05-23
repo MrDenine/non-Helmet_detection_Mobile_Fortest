@@ -4,6 +4,7 @@ import 'package:helmet_detection_app/HomeScreen.dart';
 
 import 'create-new-account.dart';
 import 'login.dart';
+import 'menu.dart';
 
 List<CameraDescription> cameras;
 
@@ -25,9 +26,10 @@ class MainScreen extends StatelessWidget {
      initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
             routes: {
                 '/': (context) => LoginScreen(),
-                '/second': (context) => CreateAccount(),
+                '/two': (context) => CreateAccount(),
+                '/three': (context) => Menu(),
             },
-      //home: HomeScreen(cameras),
+      //home: Menu(),
     );
   }
 }

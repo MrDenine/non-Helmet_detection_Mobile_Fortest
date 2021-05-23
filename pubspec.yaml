@@ -51,6 +51,11 @@ flutter:
     - assets/tflite/ssd_mobilenet.txt
     - assets/tflite/yolov2_tiny.tflite
     - assets/tflite/yolov2_tiny.txt
+    - assets/logos/people.png
+    - assets/logos/camera.png
+    - assets/logos/gallery.png
+    - assets/logos/upload.png
+    - assets/logos/setting.png
 
   fonts:
     - family: OpenSans
