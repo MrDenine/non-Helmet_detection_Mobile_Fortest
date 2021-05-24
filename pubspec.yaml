@@ -55,7 +55,7 @@ flutter:
     - assets/logos/camera.png
     - assets/logos/gallery.png
     - assets/logos/upload.png
-    - assets/logos/setting.png
+    - assets/logos/settings.png
 
   fonts:
     - family: OpenSans

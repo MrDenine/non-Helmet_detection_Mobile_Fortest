@@ -1,7 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:helmet_detection_app/HomeScreen.dart';
-
+import 'package:helmet_detection_app/settings.dart';
+import 'package:helmet_detection_app/menu.dart';
 import 'create-new-account.dart';
 import 'login.dart';
 import 'menu.dart';
@@ -28,6 +29,7 @@ class MainScreen extends StatelessWidget {
                 '/': (context) => LoginScreen(),
                 '/two': (context) => CreateAccount(),
                 '/three': (context) => Menu(),
+                '/four': (context) => Settings(),
             },
       //home: Menu(),
     );

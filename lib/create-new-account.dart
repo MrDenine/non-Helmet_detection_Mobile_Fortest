@@ -252,7 +252,23 @@ class _CreateAccountState extends State<CreateAccount> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () {Navigator.pushNamed(context, '/');},
+        onPressed: () => showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('AlertDialog Tilte'),
+          //content: const Text('AlertDialog description'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pushNamed(context, '/'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      ),
         padding: EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),

@@ -97,7 +97,6 @@ class _MenuState extends State<Menu> {
                 ],
               ),  
       ),
-      
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
@@ -194,9 +193,9 @@ class _MenuState extends State<Menu> {
                     ),
                      ),
                   _buildSocialBtn(
-                   () => print('Login with Google'),
+                   () => Navigator.pushNamed(context, '/four'),
                    AssetImage(
-                 'assets/logos/setting.png',
+                 'assets/logos/settings.png',
             ),
           ),
         ],
