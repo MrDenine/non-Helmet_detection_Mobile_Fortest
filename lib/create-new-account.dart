@@ -15,7 +15,12 @@ class _CreateAccountState extends State<CreateAccount> {
   final formKey = GlobalKey<FormState>();
   Profile profile = Profile();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
-
+  final passwordValidator = MultiValidator([
+    RequiredValidator(errorText: 'password is required'),
+    MinLengthValidator(8, errorText: 'password must be at least 8 digits long'),
+    //PatternValidator(r'(?=.*?[#?!@$%^&*-])',errorText: 'passwords must have at least one special character') รหัสต้องใช้ตัวอักษรพิเศษ
+  ]);
+  String password;
   Widget _buildName() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +42,7 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
           height: 45.0,
           child: TextFormField(
-            validator: RequiredValidator(errorText: "กรุณากรอกชื่อผู้ใช้งาน"),
+            validator: RequiredValidator(errorText: "this field is required"),
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.black,
@@ -83,8 +88,7 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
           height: 45.0,
           child: TextFormField(
-            validator:
-                RequiredValidator(errorText: "กรุณากรอกนามสกุลผู้ใช้งาน"),
+            validator: RequiredValidator(errorText: "this field is required"),
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.black,
@@ -131,8 +135,8 @@ class _CreateAccountState extends State<CreateAccount> {
           height: 45.0,
           child: TextFormField(
             validator: MultiValidator([
-              RequiredValidator(errorText: "กรุณากรอกอีเมล"),
-              EmailValidator(errorText: "รูปแบบอีเมลไม่ถูกต้อง"),
+              RequiredValidator(errorText: "this field is required"),
+              EmailValidator(errorText: "enter a valid email address"),
             ]),
             style: TextStyle(
               color: Colors.black,
@@ -179,7 +183,8 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
           height: 45.0,
           child: TextFormField(
-            validator: RequiredValidator(errorText: "กรุณากรอกรหัสผ่าน"),
+            onChanged: (val) => password = val,
+            validator: passwordValidator,
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'OpenSans',
@@ -226,6 +231,9 @@ class _CreateAccountState extends State<CreateAccount> {
           height: 45.0,
           child: TextFormField(
             obscureText: true,
+            validator: (val) =>
+                MatchValidator(errorText: 'passwords do not match')
+                    .validateMatch(val, password),
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'OpenSans',

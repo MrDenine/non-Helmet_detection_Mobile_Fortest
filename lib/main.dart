@@ -24,14 +24,14 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     /* initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
-            routes: {
-                '/': (context) => LoginScreen(),
-                '/two': (context) => CreateAccount(),
-                '/three': (context) => Menu(),
-                '/four': (context) => Settings(),
-            }, */
-      home: LoginScreen(),
+      initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
+      routes: {
+        '/': (context) => LoginScreen(),
+        '/two': (context) => CreateAccount(),
+        '/three': (context) => Menu(),
+        '/four': (context) => Settings(),
+      },
+      //home: LoginScreen(),
     );
   }
 }
