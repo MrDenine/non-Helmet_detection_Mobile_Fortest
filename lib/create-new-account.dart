@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+import 'package:helmet_detection_app/profile.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -8,7 +12,10 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   bool _rememberMe = false;
- 
+  final formKey = GlobalKey<FormState>();
+  Profile profile = Profile();
+  final Future<FirebaseApp> firebase = Firebase.initializeApp();
+
   Widget _buildName() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,19 +28,20 @@ class _CreateAccountState extends State<CreateAccount> {
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-        color: Colors.grey[300],
-      border: Border.all(
-        color: Colors.grey[300],
-        width: 2,
-      ),
-      borderRadius: BorderRadius.circular(10),
-    ),
+            color: Colors.grey[300],
+            border: Border.all(
+              color: Colors.grey[300],
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
           height: 45.0,
-          child: TextField(
+          child: TextFormField(
+            validator: RequiredValidator(errorText: "กรุณากรอกชื่อผู้ใช้งาน"),
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.black,
-             // fontFamily: 'OpenSans',
+              // fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -45,6 +53,9 @@ class _CreateAccountState extends State<CreateAccount> {
               hintText: 'Enter your Name',
               hintStyle: TextStyle(color: Colors.grey),
             ),
+            onSaved: (String name) {
+              profile.name = name;
+            },
           ),
         ),
       ],
@@ -63,19 +74,21 @@ class _CreateAccountState extends State<CreateAccount> {
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-        color: Colors.grey[300],
-      border: Border.all(
-        color: Colors.grey[300],
-        width: 2,
-      ),
-      borderRadius: BorderRadius.circular(10),
-    ),
+            color: Colors.grey[300],
+            border: Border.all(
+              color: Colors.grey[300],
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
           height: 45.0,
-          child: TextField(
+          child: TextFormField(
+            validator:
+                RequiredValidator(errorText: "กรุณากรอกนามสกุลผู้ใช้งาน"),
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.black,
-             // fontFamily: 'OpenSans',
+              // fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -87,13 +100,16 @@ class _CreateAccountState extends State<CreateAccount> {
               hintText: 'Enter your Surname',
               hintStyle: TextStyle(color: Colors.grey),
             ),
+            onSaved: (String surname) {
+              profile.surname = surname;
+            },
           ),
         ),
       ],
     );
   }
 
-   Widget _buildEmailTF() {
+  Widget _buildEmailTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -105,19 +121,22 @@ class _CreateAccountState extends State<CreateAccount> {
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-        color: Colors.grey[300],
-      border: Border.all(
-        color: Colors.grey[300],
-        width: 2,
-      ),
-      borderRadius: BorderRadius.circular(10),
-    ),
+            color: Colors.grey[300],
+            border: Border.all(
+              color: Colors.grey[300],
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
           height: 45.0,
-          child: TextField(
-            keyboardType: TextInputType.emailAddress,
+          child: TextFormField(
+            validator: MultiValidator([
+              RequiredValidator(errorText: "กรุณากรอกอีเมล"),
+              EmailValidator(errorText: "รูปแบบอีเมลไม่ถูกต้อง"),
+            ]),
             style: TextStyle(
               color: Colors.black,
-             // fontFamily: 'OpenSans',
+              // fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -129,6 +148,10 @@ class _CreateAccountState extends State<CreateAccount> {
               hintText: 'Enter your Email',
               hintStyle: TextStyle(color: Colors.grey),
             ),
+            keyboardType: TextInputType.emailAddress,
+            onSaved: (String email) {
+              profile.email = email;
+            },
           ),
         ),
       ],
@@ -146,17 +169,17 @@ class _CreateAccountState extends State<CreateAccount> {
         SizedBox(height: 2.0),
         Container(
           alignment: Alignment.centerLeft,
-           decoration: BoxDecoration(
-        color: Colors.grey[300],
-      border: Border.all(
-        color: Colors.grey[300],
-        width: 2,
-      ),
-      borderRadius: BorderRadius.circular(10),
-    ),
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            border: Border.all(
+              color: Colors.grey[300],
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
           height: 45.0,
-          child: TextField(
-            obscureText: true,
+          child: TextFormField(
+            validator: RequiredValidator(errorText: "กรุณากรอกรหัสผ่าน"),
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'OpenSans',
@@ -171,6 +194,10 @@ class _CreateAccountState extends State<CreateAccount> {
               hintText: 'Enter your Password',
               hintStyle: TextStyle(color: Colors.grey),
             ),
+            obscureText: true,
+            onSaved: (String password) {
+              profile.password = password;
+            },
           ),
         ),
       ],
@@ -188,16 +215,16 @@ class _CreateAccountState extends State<CreateAccount> {
         SizedBox(height: 2.0),
         Container(
           alignment: Alignment.centerLeft,
-           decoration: BoxDecoration(
-        color: Colors.grey[300],
-      border: Border.all(
-        color: Colors.grey[300],
-        width: 2,
-      ),
-      borderRadius: BorderRadius.circular(10),
-    ),
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            border: Border.all(
+              color: Colors.grey[300],
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
           height: 45.0,
-          child: TextField(
+          child: TextFormField(
             obscureText: true,
             style: TextStyle(
               color: Colors.black,
@@ -219,7 +246,7 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
- Widget _buildAcceptCheckbox() {
+  Widget _buildAcceptCheckbox() {
     return Container(
       height: 20.0,
       child: Row(
@@ -252,23 +279,18 @@ class _CreateAccountState extends State<CreateAccount> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () => showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('AlertDialog Tilte'),
-          //content: const Text('AlertDialog description'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'Cancel'),
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pushNamed(context, '/'),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      ),
+        onPressed: () async {
+          if (formKey.currentState.validate()) {
+            formKey.currentState.save();
+            try {
+              await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                  email: profile.email, password: profile.password);
+              formKey.currentState.reset();
+            } on FirebaseAuthException catch (e) {
+              print(e.message);
+            }
+          }
+        },
         padding: EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -287,97 +309,106 @@ class _CreateAccountState extends State<CreateAccount> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amber,
-        leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
+    return FutureBuilder(
+        future: firebase,
+        // ignore: missing_return
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text("Error"),
               ),
-            ),
-             title: Row(
-               // mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(width: 80),
-                  Column(
-                    children: [ 
-                      Text('Helmet',style: TextStyle(color: Colors.black),),    
-                      Text('Capture'),
-                    ],
-                  )
-                ],
-              ),  
-      ),
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFFFFFFFF), 
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
+              body: Center(
+                child: Text("${snapshot.error}"),
+              ),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.amber,
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
                   ),
                 ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 30.0,
-                    vertical: 24.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-             
-                      Text(
-                        'Create Account',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'OpenSans',
-                          fontSize: 30.0,
-                          height: 2.5,
-                          fontWeight: FontWeight.bold,
+                title: Row(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(width: 80),
+                    Column(
+                      children: [
+                        Text(
+                          'Helmet',
+                          style: TextStyle(color: Colors.black),
                         ),
-                      ),       
-                      SizedBox(height: 20.0),
-                      _buildName(),
-                      SizedBox( height: 10.0 ),
-                      _buildSurname(),
-                      SizedBox( height: 10.0 ),
-                      _buildEmailTF(),
-                      SizedBox( height: 10.0 ),
-                      _buildPasswordTF(),
-                      SizedBox( height: 10.0 ),
-                      _buildConfirmPassword(),
-                       SizedBox( height: 20.0 ),
-                      _buildAcceptCheckbox(),
-                      SizedBox( height: 20.0 ),
-                      _buildCreateAccountBtn()
+                        Text('Capture'),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              body: AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle.light,
+                child: GestureDetector(
+                  onTap: () => FocusScope.of(context).unfocus(),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: double.infinity,
+                        child: SingleChildScrollView(
+                          physics: AlwaysScrollableScrollPhysics(),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 30.0,
+                            vertical: 24.0,
+                          ),
+                          child: Form(
+                            key: formKey,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  'Create Account',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 30.0,
+                                    height: 2.5,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 20.0),
+                                _buildName(),
+                                SizedBox(height: 10.0),
+                                _buildSurname(),
+                                SizedBox(height: 10.0),
+                                _buildEmailTF(),
+                                SizedBox(height: 10.0),
+                                _buildPasswordTF(),
+                                SizedBox(height: 10.0),
+                                _buildConfirmPassword(),
+                                SizedBox(height: 20.0),
+                                _buildAcceptCheckbox(),
+                                SizedBox(height: 20.0),
+                                _buildCreateAccountBtn()
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+              ),
+            );
+          }
+        });
   }
 }
