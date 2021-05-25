@@ -2,7 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:helmet_detection_app/HomeScreen.dart';
+import 'package:helmet_detection_app/login.dart';
 import 'package:helmet_detection_app/profile.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -17,7 +20,7 @@ class _CreateAccountState extends State<CreateAccount> {
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
   final passwordValidator = MultiValidator([
     RequiredValidator(errorText: 'password is required'),
-    MinLengthValidator(8, errorText: 'password must be at least 8 digits long'),
+    //MinLengthValidator(8, errorText: 'password must be at least 8 digits long'), รหัสผ่าน 8 ตัว /Default 6 ตัว
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])',errorText: 'passwords must have at least one special character') รหัสต้องใช้ตัวอักษรพิเศษ
   ]);
   String password;
@@ -291,11 +294,24 @@ class _CreateAccountState extends State<CreateAccount> {
           if (formKey.currentState.validate()) {
             formKey.currentState.save();
             try {
-              await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                  email: profile.email, password: profile.password);
-              formKey.currentState.reset();
+              await FirebaseAuth.instance
+                  .createUserWithEmailAndPassword(
+                      email: profile.email, password: profile.password)
+                  .then((value) {
+                formKey.currentState.reset();
+                Fluttertoast.showToast(
+                    msg: "The account was successfully created.",
+                    gravity: ToastGravity.CENTER);
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
+                  return LoginScreen();
+                }));
+              });
             } on FirebaseAuthException catch (e) {
-              print(e.message);
+              //print(e.code);
+              //print(e.message);
+              Fluttertoast.showToast(
+                  msg: e.message, gravity: ToastGravity.CENTER);
             }
           }
         },
@@ -322,7 +338,6 @@ class _CreateAccountState extends State<CreateAccount> {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: firebase,
-        // ignore: missing_return
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Scaffold(
@@ -417,6 +432,11 @@ class _CreateAccountState extends State<CreateAccount> {
               ),
             );
           }
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         });
   }
 }
