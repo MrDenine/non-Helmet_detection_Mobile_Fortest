@@ -9,7 +9,6 @@ class Camera extends StatefulWidget {
   final List<CameraDescription> cameras;
   final Callback setRecognitions;
   final String model;
-
   Camera(this.cameras, this.model, this.setRecognitions);
 
   @override

@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
             labels: "assets/tflite/ssd_mobilenet.txt",
             model: "assets/tflite/ssd_mobilenet.tflite");
     }
+
     print(result);
   }
 
