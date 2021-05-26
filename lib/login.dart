@@ -1,5 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+import 'package:helmet_detection_app/Menu.dart';
+import 'package:helmet_detection_app/profile.dart';
 
 //ยังไม่แก้ไข
 final kHintTextStyle = TextStyle(
@@ -32,6 +38,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
+  final formKey = GlobalKey<FormState>();
+  Profile profile = Profile();
+  final Future<FirebaseApp> firebase = Firebase.initializeApp();
 
   Widget _buildEmailTF() {
     return Column(
@@ -54,7 +63,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           height: 45.0,
           child: TextFormField(
-            keyboardType: TextInputType.emailAddress,
+            validator: MultiValidator([
+              RequiredValidator(errorText: "this field is required"),
+              EmailValidator(errorText: "enter a valid email address"),
+            ]),
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'OpenSans',
@@ -69,6 +81,9 @@ class _LoginScreenState extends State<LoginScreen> {
               hintText: 'Enter your Email',
               hintStyle: TextStyle(color: Colors.grey),
             ),
+            onSaved: (String email) {
+              profile.email = email;
+            },
           ),
         ),
       ],
@@ -96,6 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           height: 45.0,
           child: TextFormField(
+            validator: RequiredValidator(errorText: "this field is required"),
             obscureText: true,
             style: TextStyle(
               color: Colors.black,
@@ -111,6 +127,9 @@ class _LoginScreenState extends State<LoginScreen> {
               hintText: 'Enter your Password',
               hintStyle: TextStyle(color: Colors.grey),
             ),
+            onSaved: (String password) {
+              profile.password = password;
+            },
           ),
         ),
       ],
@@ -164,7 +183,26 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () => Navigator.pushNamed(context, '/three'),
+        onPressed: () async {
+          if (formKey.currentState.validate()) {
+            formKey.currentState.save();
+            try {
+              await FirebaseAuth.instance
+                  .signInWithEmailAndPassword(
+                      email: profile.email, password: profile.password)
+                  .then((value) {
+                formKey.currentState.reset();
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
+                  return Menu();
+                }));
+              });
+            } on FirebaseAuthException catch (e) {
+              Fluttertoast.showToast(
+                  msg: e.message, gravity: ToastGravity.CENTER);
+            }
+          }
+        },
         padding: EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -290,71 +328,74 @@ class _LoginScreenState extends State<LoginScreen> {
                     horizontal: 30.0,
                     vertical: 29.0,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 0.0),
-                        child: Center(
-                          child: Container(
-                              width: 200,
-                              height: 150,
-                              /*decoration: BoxDecoration(
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 0.0),
+                          child: Center(
+                            child: Container(
+                                width: 200,
+                                height: 150,
+                                /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                              child: Image.asset('assets/logos/LogoApp.png')),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Helmet',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'OpenSans',
-                              fontSize: 15.0,
-                              height: 0.25,
-                              fontWeight: FontWeight.bold,
-                            ),
+                                child: Image.asset('assets/logos/LogoApp.png')),
                           ),
-                          SizedBox(width: 10),
-                          Text(
-                            'Capture',
-                            style: TextStyle(
-                              color: Colors.amber,
-                              fontFamily: 'OpenSans',
-                              fontSize: 15.0,
-                              height: 0.25,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Sign In',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontFamily: 'OpenSans',
-                          fontSize: 30.0,
-                          height: 2.5,
-                          fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      SizedBox(height: 5.0),
-                      _buildEmailTF(),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      _buildPasswordTF(),
-                      _buildForgotPasswordBtn(),
-                      //  _buildRememberMeCheckbox(),
-                      // SizedBox(height: 0.0),
-                      _buildLoginBtn(),
-                      _buildSignInWithText(),
-                      _buildSocialBtnRow(),
-                      _buildSignupBtn(),
-                    ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Helmet',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'OpenSans',
+                                fontSize: 15.0,
+                                height: 0.25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Capture',
+                              style: TextStyle(
+                                color: Colors.amber,
+                                fontFamily: 'OpenSans',
+                                fontSize: 15.0,
+                                height: 0.25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          'Sign In',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontFamily: 'OpenSans',
+                            fontSize: 30.0,
+                            height: 2.5,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 5.0),
+                        _buildEmailTF(),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        _buildPasswordTF(),
+                        _buildForgotPasswordBtn(),
+                        //  _buildRememberMeCheckbox(),
+                        // SizedBox(height: 0.0),
+                        _buildLoginBtn(),
+                        _buildSignInWithText(),
+                        _buildSocialBtnRow(),
+                        _buildSignupBtn(),
+                      ],
+                    ),
                   ),
                 ),
               )
