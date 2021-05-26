@@ -24,6 +24,7 @@ class _CreateAccountState extends State<CreateAccount> {
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])',errorText: 'passwords must have at least one special character') รหัสต้องใช้ตัวอักษรพิเศษ
   ]);
   String password;
+
   Widget _buildName() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,16 +35,6 @@ class _CreateAccountState extends State<CreateAccount> {
         ),
         SizedBox(height: 2.0),
         Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            border: Border.all(
-              color: Colors.grey[300],
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          height: 45.0,
           child: TextFormField(
             validator: RequiredValidator(errorText: "this field is required"),
             keyboardType: TextInputType.emailAddress,
@@ -52,8 +43,6 @@ class _CreateAccountState extends State<CreateAccount> {
               // fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 7.0),
               prefixIcon: Icon(
                 Icons.person,
                 color: Colors.grey,
@@ -80,16 +69,6 @@ class _CreateAccountState extends State<CreateAccount> {
         ),
         SizedBox(height: 2.0),
         Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            border: Border.all(
-              color: Colors.grey[300],
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          height: 45.0,
           child: TextFormField(
             validator: RequiredValidator(errorText: "this field is required"),
             keyboardType: TextInputType.emailAddress,
@@ -98,8 +77,6 @@ class _CreateAccountState extends State<CreateAccount> {
               // fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 7.0),
               prefixIcon: Icon(
                 Icons.person,
                 color: Colors.grey,
@@ -126,16 +103,6 @@ class _CreateAccountState extends State<CreateAccount> {
         ),
         SizedBox(height: 2.0),
         Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            border: Border.all(
-              color: Colors.grey[300],
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          height: 45.0,
           child: TextFormField(
             validator: MultiValidator([
               RequiredValidator(errorText: "this field is required"),
@@ -146,8 +113,6 @@ class _CreateAccountState extends State<CreateAccount> {
               // fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 7.0),
               prefixIcon: Icon(
                 Icons.email,
                 color: Colors.grey,
@@ -175,16 +140,6 @@ class _CreateAccountState extends State<CreateAccount> {
         ),
         SizedBox(height: 2.0),
         Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            border: Border.all(
-              color: Colors.grey[300],
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          height: 45.0,
           child: TextFormField(
             onChanged: (val) => password = val,
             validator: passwordValidator,
@@ -193,8 +148,6 @@ class _CreateAccountState extends State<CreateAccount> {
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 5.0),
               prefixIcon: Icon(
                 Icons.lock,
                 color: Colors.grey,
@@ -222,16 +175,6 @@ class _CreateAccountState extends State<CreateAccount> {
         ),
         SizedBox(height: 2.0),
         Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            border: Border.all(
-              color: Colors.grey[300],
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          height: 45.0,
           child: TextFormField(
             obscureText: true,
             validator: (val) =>
@@ -242,8 +185,6 @@ class _CreateAccountState extends State<CreateAccount> {
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 5.0),
               prefixIcon: Icon(
                 Icons.lock,
                 color: Colors.grey,

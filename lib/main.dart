@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:helmet_detection_app/HomeScreen.dart';
 import 'package:helmet_detection_app/settings.dart';
@@ -11,6 +12,7 @@ List<CameraDescription> cameras;
 
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   try {
     cameras = await availableCameras();
   } on CameraException catch (e) {
@@ -29,9 +31,9 @@ class MainScreen extends StatelessWidget {
         '/': (context) => LoginScreen(),
         '/two': (context) => CreateAccount(),
         '/three': (context) => Menu(),
-        '/four': (context) => Settings(),
+        '/four': (context) => SettingsScreen(),
       },
-      //home: LoginScreen(),
+      // home: SettingsScreen(),
     );
   }
 }

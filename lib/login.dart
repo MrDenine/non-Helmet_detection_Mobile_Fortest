@@ -52,16 +52,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         SizedBox(height: 2.0),
         Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            border: Border.all(
-              color: Colors.grey[300],
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          height: 45.0,
           child: TextFormField(
             validator: MultiValidator([
               RequiredValidator(errorText: "this field is required"),
@@ -72,8 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 5.0),
               prefixIcon: Icon(
                 Icons.email,
                 color: Colors.grey,
@@ -100,16 +88,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         SizedBox(height: 2.0),
         Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            border: Border.all(
-              color: Colors.grey[300],
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          height: 45.0,
           child: TextFormField(
             validator: RequiredValidator(errorText: "this field is required"),
             obscureText: true,
@@ -118,8 +96,6 @@ class _LoginScreenState extends State<LoginScreen> {
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 5.0),
               prefixIcon: Icon(
                 Icons.lock,
                 color: Colors.grey,
