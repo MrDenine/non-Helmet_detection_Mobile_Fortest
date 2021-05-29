@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "112529939994",
+    "project_id": "non-helmet-detection-pro-b6a5a",
+    "storage_bucket": "non-helmet-detection-pro-b6a5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112529939994:android:1466a0037ed04ab768fba3",
+        "android_client_info": {
+          "package_name": "com.rmutt.cpe.project.helmet_detection_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112529939994-p3jup9j198jqh6q7b846ohtah22iotm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnjgBerZ6f43eRVNNfOzmsMlmlY8aOk0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112529939994-p3jup9j198jqh6q7b846ohtah22iotm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
