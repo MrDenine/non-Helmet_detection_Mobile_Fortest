@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:helmet_detection_app/page/menu.dart';
 import 'package:helmet_detection_app/data_model/profile.dart';
-import 'package:helmet_detection_app/provider/google_sign_in.dart';
+import 'package:helmet_detection_app/provider/google_service.dart';
 import 'package:provider/provider.dart';
 
 //ยังไม่แก้ไข
