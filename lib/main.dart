@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:helmet_detection_app/capture_detection/HomeScreenCamera.dart';
+import 'package:helmet_detection_app/page/changeprofile.dart';
 import 'package:helmet_detection_app/provider/google_service.dart';
 import 'package:helmet_detection_app/page/settings.dart';
 import 'package:helmet_detection_app/page/menu.dart';
@@ -34,6 +35,7 @@ class MainScreen extends StatelessWidget {
             '/two': (context) => CreateAccount(),
             '/three': (context) => Menu(),
             '/four': (context) => SettingsScreen(),
+            '/five': (context) => ChangeProfile()
           },
           // home: SettingsScreen(),
         ),

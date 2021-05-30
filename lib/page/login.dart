@@ -238,10 +238,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 FontAwesomeIcons.google,
                 color: Colors.red,
               ),
-              onPressed: () {
+              onPressed: () async {
                 final provider =
                     Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.googleLogin();
+                provider.googleLogin().whenComplete(() => Navigator.of(context)
+                    .pushReplacement(
+                        MaterialPageRoute(builder: (context) => Menu())));
               },
               label: Text('Sign Up with Google'))
         ],
