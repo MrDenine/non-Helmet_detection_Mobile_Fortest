@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:helmet_detection_app/HomeScreen.dart';
 import 'package:helmet_detection_app/settings.dart';
 import 'package:helmet_detection_app/menu.dart';
+import 'changeprofile.dart';
 import 'create-new-account.dart';
 import 'login.dart';
 import 'menu.dart';
@@ -32,8 +33,9 @@ class MainScreen extends StatelessWidget {
         '/two': (context) => CreateAccount(),
         '/three': (context) => Menu(),
         '/four': (context) => SettingsScreen(),
+        '/five': (context) => ChangeProfile(),
       },
-      // home: SettingsScreen(),
+      /* home: SettingsScreen(), */
     );
   }
 }

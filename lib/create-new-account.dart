@@ -15,6 +15,9 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   bool _rememberMe = false;
+  bool _isObscure = true;
+  bool _showpass = false;
+
   final formKey = GlobalKey<FormState>();
   Profile profile = Profile();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
@@ -155,7 +158,7 @@ class _CreateAccountState extends State<CreateAccount> {
               hintText: 'Enter your Password',
               hintStyle: TextStyle(color: Colors.grey),
             ),
-            obscureText: true,
+            obscureText: _isObscure,
             onSaved: (String password) {
               profile.password = password;
             },
@@ -176,7 +179,7 @@ class _CreateAccountState extends State<CreateAccount> {
         SizedBox(height: 2.0),
         Container(
           child: TextFormField(
-            obscureText: true,
+            obscureText: _isObscure,
             validator: (val) =>
                 MatchValidator(errorText: 'passwords do not match')
                     .validateMatch(val, password),
@@ -195,6 +198,33 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
         ),
       ],
+    );
+  }
+  Widget _buildShowPassword() {
+    return Container(
+      height: 20.0,
+      child: Row(
+        children: <Widget>[
+          Theme(
+            data: ThemeData(unselectedWidgetColor: Colors.black),
+            child: Checkbox(
+              value: _showpass,
+              checkColor: Colors.white,
+              activeColor: Colors.black,
+              onChanged: (value) {
+                setState(() {
+                  _showpass = value;
+                  _isObscure =! _isObscure;
+                });
+              },
+            ),
+          ),
+          Text(
+            'Show password',
+            style: TextStyle(color: Colors.black),
+          ),
+        ],
+      ),
     );
   }
 
@@ -331,7 +361,7 @@ class _CreateAccountState extends State<CreateAccount> {
                           physics: AlwaysScrollableScrollPhysics(),
                           padding: EdgeInsets.symmetric(
                             horizontal: 30.0,
-                            vertical: 24.0,
+                            vertical: 1.0,
                           ),
                           child: Form(
                             key: formKey,
@@ -348,7 +378,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(height: 20.0),
+                                SizedBox(height: 10.0),
                                 _buildName(),
                                 SizedBox(height: 10.0),
                                 _buildSurname(),
@@ -359,6 +389,8 @@ class _CreateAccountState extends State<CreateAccount> {
                                 SizedBox(height: 10.0),
                                 _buildConfirmPassword(),
                                 SizedBox(height: 20.0),
+                                _buildShowPassword(),
+                                SizedBox( height: 10.0 ),
                                 _buildAcceptCheckbox(),
                                 SizedBox(height: 20.0),
                                 _buildCreateAccountBtn()

@@ -38,6 +38,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
+  bool _isObscure = true;
+
   final formKey = GlobalKey<FormState>();
   Profile profile = Profile();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
@@ -90,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Container(
           child: TextFormField(
             validator: RequiredValidator(errorText: "this field is required"),
-            obscureText: true,
+            obscureText: _isObscure,
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'OpenSans',
@@ -102,6 +104,14 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               hintText: 'Enter your Password',
               hintStyle: TextStyle(color: Colors.grey),
+              suffixIcon: IconButton(
+                    icon: Icon(
+                        _isObscure ? Icons.visibility_off : Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        _isObscure = !_isObscure;
+                      });
+                    })
             ),
             onSaved: (String password) {
               profile.password = password;
@@ -310,18 +320,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 0.0),
+                          padding: const EdgeInsets.only(top: 20.0),
                           child: Center(
                             child: Container(
-                                width: 200,
-                                height: 150,
-                                /*decoration: BoxDecoration(
+                    width: 150,
+                    height: 120,
+                    /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                                child: Image.asset('assets/logos/LogoApp.png')),
+                    child: Image.asset('assets/logos/LogoApp2.png')),
                           ),
                         ),
-                        Row(
+                        /* Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
@@ -346,7 +356,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ],
-                        ),
+                        ), */
                         Text(
                           'Sign In',
                           style: TextStyle(
