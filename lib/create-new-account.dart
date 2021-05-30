@@ -248,7 +248,7 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
           Text(
             'I accept the terms of the argreement',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
           ),
         ],
       ),
