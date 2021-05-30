@@ -312,7 +312,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(
                     horizontal: 30.0,
-                    vertical: 29.0,
+                    vertical: 11.0,
                   ),
                   child: Form(
                     key: formKey,
