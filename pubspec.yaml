@@ -29,6 +29,7 @@ dependencies:
   firebase_auth: ^1.2.0
   firebase_core: ^1.2.0
   fluttertoast: ^8.0.7
+  font_awesome_flutter: ^9.0.0
   form_field_validator: ^1.1.0
   google_sign_in: ^5.0.4
   image: ^3.0.2

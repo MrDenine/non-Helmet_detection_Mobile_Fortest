@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:helmet_detection_app/BoundingBox.dart';
-import 'package:helmet_detection_app/Camera.dart';
+import 'package:helmet_detection_app/capture_detection/BoundingBox.dart';
+import 'package:helmet_detection_app/capture_detection/Camera.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 

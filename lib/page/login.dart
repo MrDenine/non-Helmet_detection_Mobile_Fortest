@@ -3,9 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:helmet_detection_app/Menu.dart';
-import 'package:helmet_detection_app/profile.dart';
+import 'package:helmet_detection_app/page/menu.dart';
+import 'package:helmet_detection_app/data_model/profile.dart';
+import 'package:helmet_detection_app/provider/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 //ยังไม่แก้ไข
 final kHintTextStyle = TextStyle(
@@ -98,21 +101,20 @@ class _LoginScreenState extends State<LoginScreen> {
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.grey,
-              ),
-              hintText: 'Enter your Password',
-              hintStyle: TextStyle(color: Colors.grey),
-              suffixIcon: IconButton(
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Colors.grey,
+                ),
+                hintText: 'Enter your Password',
+                hintStyle: TextStyle(color: Colors.grey),
+                suffixIcon: IconButton(
                     icon: Icon(
                         _isObscure ? Icons.visibility_off : Icons.visibility),
                     onPressed: () {
                       setState(() {
                         _isObscure = !_isObscure;
                       });
-                    })
-            ),
+                    })),
             onSaved: (String password) {
               profile.password = password;
             },
@@ -220,48 +222,27 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSocialBtn(Function onTap, AssetImage logo) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(0, 2),
-              blurRadius: 6.0,
-            ),
-          ],
-          image: DecorationImage(
-            image: logo,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSocialBtnRow() {
+  Widget _buildGoogleSignInBtn() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 30.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _buildSocialBtn(
-            () => print('Login with Facebook'),
-            AssetImage(
-              'assets/logos/facebook.jpg',
-            ),
-          ),
-          _buildSocialBtn(
-            () => print('Login with Google'),
-            AssetImage(
-              'assets/logos/google.jpg',
-            ),
-          ),
+      padding: EdgeInsets.all(32),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  onPrimary: Colors.black,
+                  minimumSize: Size(double.infinity, 50)),
+              icon: FaIcon(
+                FontAwesomeIcons.google,
+                color: Colors.red,
+              ),
+              onPressed: () {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+                provider.googleLogin();
+              },
+              label: Text('Sign Up with Google'))
         ],
       ),
     );
@@ -323,12 +304,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Center(
                             child: Container(
-                    width: 150,
-                    height: 120,
-                    /*decoration: BoxDecoration(
+                                width: 150,
+                                height: 120,
+                                /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('assets/logos/LogoApp2.png')),
+                                child:
+                                    Image.asset('assets/logos/LogoApp2.png')),
                           ),
                         ),
                         /* Row(
@@ -378,7 +360,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         // SizedBox(height: 0.0),
                         _buildLoginBtn(),
                         _buildSignInWithText(),
-                        _buildSocialBtnRow(),
+                        _buildGoogleSignInBtn(),
                         _buildSignupBtn(),
                       ],
                     ),

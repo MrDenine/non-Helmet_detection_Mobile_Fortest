@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:helmet_detection_app/HomeScreen.dart';
-import 'package:helmet_detection_app/login.dart';
-import 'package:helmet_detection_app/profile.dart';
+import 'package:helmet_detection_app/capture_detection/HomeScreenCamera.dart';
+import 'package:helmet_detection_app/page/login.dart';
+import 'package:helmet_detection_app/data_model/profile.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -200,6 +200,7 @@ class _CreateAccountState extends State<CreateAccount> {
       ],
     );
   }
+
   Widget _buildShowPassword() {
     return Container(
       height: 20.0,
@@ -214,7 +215,7 @@ class _CreateAccountState extends State<CreateAccount> {
               onChanged: (value) {
                 setState(() {
                   _showpass = value;
-                  _isObscure =! _isObscure;
+                  _isObscure = !_isObscure;
                 });
               },
             ),
@@ -248,7 +249,7 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
           Text(
             'I accept the terms of the argreement',
-            style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -390,7 +391,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 _buildConfirmPassword(),
                                 SizedBox(height: 20.0),
                                 _buildShowPassword(),
-                                SizedBox( height: 10.0 ),
+                                SizedBox(height: 10.0),
                                 _buildAcceptCheckbox(),
                                 SizedBox(height: 20.0),
                                 _buildCreateAccountBtn()
