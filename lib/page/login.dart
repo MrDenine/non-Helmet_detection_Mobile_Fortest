@@ -239,11 +239,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.red,
               ),
               onPressed: () async {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.googleLogin().whenComplete(() => Navigator.of(context)
-                    .pushReplacement(
-                        MaterialPageRoute(builder: (context) => Menu())));
+                try {
+                  final provider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
+                  provider.googleLogin().whenComplete(() =>
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => Menu())));
+                } on FirebaseAuthException catch (e) {
+                  Fluttertoast.showToast(
+                      msg: e.message, gravity: ToastGravity.CENTER);
+                }
               },
               label: Text('Sign Up with Google'))
         ],
@@ -363,7 +368,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         // SizedBox(height: 0.0),
                         _buildLoginBtn(),
                         _buildSignInWithText(),
-                        _buildGoogleSignInBtn(),
+                        //_buildGoogleSignInBtn(),
                         _buildSignupBtn(),
                       ],
                     ),

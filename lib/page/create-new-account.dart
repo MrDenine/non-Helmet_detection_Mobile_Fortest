@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:helmet_detection_app/capture_detection/HomeScreenCamera.dart';
+import 'package:helmet_detection_app/database_services/user_collection.dart';
 import 'package:helmet_detection_app/page/login.dart';
 import 'package:helmet_detection_app/data_model/profile.dart';
 
@@ -14,18 +15,19 @@ class CreateAccount extends StatefulWidget {
 }
 
 class _CreateAccountState extends State<CreateAccount> {
-  bool _rememberMe = false;
-  bool _isObscure = true;
-  bool _showpass = false;
+  final Future<FirebaseApp> firebase = Firebase.initializeApp();
 
   final formKey = GlobalKey<FormState>();
-  Profile profile = Profile();
-  final Future<FirebaseApp> firebase = Firebase.initializeApp();
+  var user;
   final passwordValidator = MultiValidator([
     RequiredValidator(errorText: 'password is required'),
     //MinLengthValidator(8, errorText: 'password must be at least 8 digits long'), รหัสผ่าน 8 ตัว /Default 6 ตัว
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])',errorText: 'passwords must have at least one special character') รหัสต้องใช้ตัวอักษรพิเศษ
   ]);
+  bool _rememberMe = false;
+  bool _isObscure = true;
+  bool _showpass = false;
+  Profile profile = Profile();
   String password;
 
   Widget _buildName() {
@@ -271,6 +273,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       email: profile.email, password: profile.password)
                   .then((value) {
                 formKey.currentState.reset();
+                userSetup(profile.email, profile.name, profile.surname);
                 Fluttertoast.showToast(
                     msg: "The account was successfully created.",
                     gravity: ToastGravity.CENTER);

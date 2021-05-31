@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:helmet_detection_app/page/login.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -8,127 +10,152 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsState extends State<SettingsScreen> {
   bool _rememberMe = false;
+  final accoutAuth = FirebaseAuth.instance;
 
   Widget _buildChangePro() {
     return ElevatedButton(
-        onPressed: () => Navigator.pushNamed(context, '/five'),
-        style: ElevatedButton.styleFrom(
-          primary: Colors.grey[300],
+      onPressed: () => Navigator.pushNamed(context, '/five'),
+      style: ElevatedButton.styleFrom(
+        primary: Colors.grey[300],
+      ),
+      child: Container(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+        child: Row(
+          children: [
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Icon(
+                  Icons.person,
+                  color: Colors.black,
+                )),
+            Container(
+              margin: const EdgeInsets.only(left: 10.0),
+              child: Text(
+                "Edit Profile",
+                style: TextStyle(fontSize: 18.0, color: Colors.black),
+              ),
+            ),
+          ],
         ),
-        child: Container(
-          padding: const EdgeInsets.only(top: 10.0, bottom: 10),
-          child: Row(
-            children: [
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.black,
-                  )),
-              Container(
-                  margin: const EdgeInsets.only(left: 10.0),
-                  child: Text(
-                    "Edit Profile",
-                    style: TextStyle(fontSize: 18.0, color: Colors.black),
-                  ))
-            ],
-          ),
-        ));
+      ),
+    );
   }
 
   Widget _buildChangeP() {
     return ElevatedButton(
-        onPressed: () => print('s'),
-        style: ElevatedButton.styleFrom(
-          primary: Colors.grey[300],
+      onPressed: () => print('s'),
+      style: ElevatedButton.styleFrom(
+        primary: Colors.grey[300],
+      ),
+      child: Container(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+        child: Row(
+          children: [
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Icon(
+                  Icons.lock,
+                  color: Colors.black,
+                )),
+            Container(
+              margin: const EdgeInsets.only(left: 10.0),
+              child: Text(
+                "Change Password",
+                style: TextStyle(fontSize: 18.0, color: Colors.black),
+              ),
+            ),
+          ],
         ),
-        child: Container(
-          padding: const EdgeInsets.only(top: 10.0, bottom: 10),
-          child: Row(
-            children: [
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child: Icon(
-                    Icons.lock,
-                    color: Colors.black,
-                  )),
-              Container(
-                  margin: const EdgeInsets.only(left: 10.0),
-                  child: Text(
-                    "Change Password",
-                    style: TextStyle(fontSize: 18.0, color: Colors.black),
-                  ))
-            ],
-          ),
-        ));
+      ),
+    );
   }
 
   Widget _buildFb() {
     return ElevatedButton(
-        onPressed: () => print('s'),
-        style: ElevatedButton.styleFrom(
-          primary: Colors.grey[300],
+      onPressed: () => print('s'),
+      style: ElevatedButton.styleFrom(
+        primary: Colors.grey[300],
+      ),
+      child: Container(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+        child: Row(
+          children: [
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Icon(
+                  Icons.feedback,
+                  color: Colors.black,
+                )),
+            Container(
+              margin: const EdgeInsets.only(left: 10.0),
+              child: Text(
+                "Feedback",
+                style: TextStyle(fontSize: 18.0, color: Colors.black),
+              ),
+            ),
+          ],
         ),
-        child: Container(
-          padding: const EdgeInsets.only(top: 10.0, bottom: 10),
-          child: Row(
-            children: [
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child: Icon(
-                    Icons.feedback,
-                    color: Colors.black,
-                  )),
-              Container(
-                  margin: const EdgeInsets.only(left: 10.0),
-                  child: Text(
-                    "Feedback",
-                    style: TextStyle(fontSize: 18.0, color: Colors.black),
-                  ))
-            ],
-          ),
-        ));
+      ),
+    );
   }
 
   Widget _buildAa() {
     return ElevatedButton(
-        onPressed: () => print('s'),
-        style: ElevatedButton.styleFrom(
-          primary: Colors.grey[300],
+      onPressed: () => print('s'),
+      style: ElevatedButton.styleFrom(
+        primary: Colors.grey[300],
+      ),
+      child: Container(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+        child: Row(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Icon(
+                Icons.error,
+                color: Colors.black,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 10.0),
+              child: Text(
+                "About App",
+                style: TextStyle(fontSize: 18.0, color: Colors.black),
+              ),
+            ),
+          ],
         ),
-        child: Container(
-          padding: const EdgeInsets.only(top: 10.0, bottom: 10),
-          child: Row(
-            children: [
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child: Icon(
-                    Icons.error,
-                    color: Colors.black,
-                  )),
-              Container(
-                  margin: const EdgeInsets.only(left: 10.0),
-                  child: Text(
-                    "About App",
-                    style: TextStyle(fontSize: 18.0, color: Colors.black),
-                  ))
-            ],
-          ),
-        ));
+      ),
+    );
   }
 
   Widget _buildLogout() {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 2.5),
-        width: double.infinity,
-        child: ElevatedButton(
-            onPressed: () => Navigator.pushNamed(context, '/'),
-            style: ElevatedButton.styleFrom(
-                primary: Colors.red, minimumSize: Size(0, 45)),
-            child: Text(
-              'Log out',
-              style: TextStyle(fontSize: 20),
-            )));
+      padding: EdgeInsets.symmetric(vertical: 2.5),
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          accoutAuth.signOut().then(
+                (value) => {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginScreen();
+                      },
+                    ),
+                  ),
+                },
+              );
+        },
+        style: ElevatedButton.styleFrom(
+            primary: Colors.red, minimumSize: Size(0, 45)),
+        child: Text(
+          'Log out',
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
+    );
   }
 
   Widget _buildCont() {
@@ -140,19 +167,21 @@ class _SettingsState extends State<SettingsScreen> {
           style: TextStyle(fontSize: 15),
         ),
         Container(
-            padding: EdgeInsets.symmetric(vertical: 2.5),
-            width: double.infinity,
-            child: ElevatedButton(
-                onPressed: () => print('ลิงค์ไปเมลผู้ดูแล'),
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.white, minimumSize: Size(0, 45)),
-                child: Text(
-                  'abcd@gmail.com',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                )))
+          padding: EdgeInsets.symmetric(vertical: 2.5),
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () => print('ลิงค์ไปเมลผู้ดูแล'),
+            style: ElevatedButton.styleFrom(
+                primary: Colors.white, minimumSize: Size(0, 45)),
+            child: Text(
+              'abcd@gmail.com',
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -166,19 +195,14 @@ class _SettingsState extends State<SettingsScreen> {
           style: TextStyle(fontSize: 15),
         ),
         Container(
-            padding: EdgeInsets.symmetric(vertical: 2.5),
-            width: double.infinity,
-            child: ElevatedButton(
-                onPressed: () => print('abc@gmail.com'),
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.white, minimumSize: Size(0, 45)),
-                child: Text(
-                  'abc@gmail.com',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                )))
+          padding: EdgeInsets.symmetric(vertical: 2.5),
+          width: double.infinity,
+          child: Text(
+            accoutAuth.currentUser.email,
+            style: TextStyle(
+                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+          ), //แสดงอีเมลผู้ใช้งาน
+        )
       ],
     );
   }
