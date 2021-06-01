@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -8,6 +11,8 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> {
   bool _rememberMe = false;
+  File _image;
+  final picker = ImagePicker();
 
   Widget _buildSocialBtn(Function onTap, AssetImage logo) {
     return GestureDetector(
@@ -58,6 +63,7 @@ class _MenuState extends State<Menu> {
     );
   }
 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,13 +183,13 @@ class _MenuState extends State<Menu> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           _buildSocialBtn(
-                            () => print('Login with Facebook'),
+                            () => _getImage(ImageSource.camera),
                             AssetImage(
                               'assets/logos/camera.png',
                             ),
                           ),
                           _buildSocialBtn(
-                            () => print('Login with Google'),
+                            () => print('Gallery'),
                             AssetImage(
                               'assets/logos/gallery.png',
                             ),
@@ -197,7 +203,7 @@ class _MenuState extends State<Menu> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           _buildSocialBtn(
-                            () => print('Login with Facebook'),
+                            () => Navigator.pushNamed(context, '/five'),
                             AssetImage(
                               'assets/logos/upload.png',
                             ),
@@ -218,4 +224,17 @@ class _MenuState extends State<Menu> {
       ),
     );
   }
+
+  _getImage(ImageSource imageSource) async {
+    PickedFile imageFile = await picker.getImage(source: imageSource);
+
+    if (imageFile == null) return;
+
+    setState(
+      () {
+        _image = File(imageFile.path);
+      },
+    );
+  }
+  
 }

@@ -9,6 +9,7 @@ import 'package:helmet_detection_app/page/menu.dart';
 import 'package:provider/provider.dart';
 import 'page/create-new-account.dart';
 import 'page/login.dart';
+import 'page/upload.dart';
 
 List<CameraDescription> cameras;
 
@@ -29,15 +30,19 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
         create: (context) => GoogleSignInProvider(),
         child: MaterialApp(
-          initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
+          theme: ThemeData(
+        primarySwatch: Colors.amber,
+      ),
+          /* initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
           routes: {
             '/': (context) => LoginScreen(),
             '/two': (context) => CreateAccount(),
             '/three': (context) => Menu(),
             '/four': (context) => SettingsScreen(),
-            '/five': (context) => ChangeProfile()
-          },
-          // home: SettingsScreen(),
+            '/five': (context) => ChangeProfile(),
+            '/five': (context) => Upload()
+          }, */
+          home: Upload(),
         ),
       );
 }
