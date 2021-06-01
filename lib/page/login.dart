@@ -58,10 +58,12 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(height: 2.0),
         Container(
           child: TextFormField(
-            validator: MultiValidator([
-              RequiredValidator(errorText: "this field is required"),
-              EmailValidator(errorText: "enter a valid email address"),
-            ]),
+            validator: MultiValidator(
+              [
+                RequiredValidator(errorText: "this field is required"),
+                EmailValidator(errorText: "enter a valid email address"),
+              ],
+            ),
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'OpenSans',
@@ -101,20 +103,24 @@ class _LoginScreenState extends State<LoginScreen> {
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
-                prefixIcon: Icon(
-                  Icons.lock,
-                  color: Colors.grey,
-                ),
-                hintText: 'Enter your Password',
-                hintStyle: TextStyle(color: Colors.grey),
-                suffixIcon: IconButton(
-                    icon: Icon(
-                        _isObscure ? Icons.visibility_off : Icons.visibility),
-                    onPressed: () {
-                      setState(() {
-                        _isObscure = !_isObscure;
-                      });
-                    })),
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Colors.grey,
+              ),
+              hintText: 'Enter your Password',
+              hintStyle: TextStyle(color: Colors.grey),
+              suffixIcon: IconButton(
+                icon:
+                    Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
+                onPressed: () {
+                  setState(
+                    () {
+                      _isObscure = !_isObscure;
+                    },
+                  );
+                },
+              ),
+            ),
             onSaved: (String password) {
               profile.password = password;
             },
@@ -138,33 +144,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  /* Widget _buildRememberMeCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.black),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.white,
-              activeColor: Colors.black,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: TextStyle(color: Colors.black),
-          ),
-        ],
-      ),
-    );
-  }*/
-
   Widget _buildLoginBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 2.5),
@@ -178,13 +157,19 @@ class _LoginScreenState extends State<LoginScreen> {
               await FirebaseAuth.instance
                   .signInWithEmailAndPassword(
                       email: profile.email, password: profile.password)
-                  .then((value) {
-                formKey.currentState.reset();
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) {
-                  return Menu();
-                }));
-              });
+                  .then(
+                (value) {
+                  formKey.currentState.reset();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Menu();
+                      },
+                    ),
+                  );
+                },
+              );
             } on FirebaseAuthException catch (e) {
               Fluttertoast.showToast(
                   msg: e.message, gravity: ToastGravity.CENTER);
@@ -231,9 +216,10 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: Colors.black,
-                  minimumSize: Size(double.infinity, 50)),
+                primary: Colors.white,
+                onPrimary: Colors.black,
+                minimumSize: Size(double.infinity, 50),
+              ),
               icon: FaIcon(
                 FontAwesomeIcons.google,
                 color: Colors.red,
@@ -312,41 +298,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Center(
                             child: Container(
-                                width: 150,
-                                height: 120,
-                                /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                                child:
-                                    Image.asset('assets/logos/LogoApp2.png')),
+                              width: 150,
+                              height: 120,
+                              child: Image.asset('assets/logos/LogoApp2.png'),
+                            ),
                           ),
                         ),
-                        /* Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Helmet',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'OpenSans',
-                                fontSize: 15.0,
-                                height: 0.25,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              'Capture',
-                              style: TextStyle(
-                                color: Colors.amber,
-                                fontFamily: 'OpenSans',
-                                fontSize: 15.0,
-                                height: 0.25,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ), */
                         Text(
                           'Sign In',
                           style: TextStyle(
