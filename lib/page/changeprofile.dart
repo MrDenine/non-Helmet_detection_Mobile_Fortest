@@ -197,9 +197,9 @@ class _ChangeProfileState extends State<ChangeProfile> {
               ),
             ),
              title: Row(
-               // mainAxisAlignment: MainAxisAlignment.center,
+                /* mainAxisAlignment: MainAxisAlignment.center,  */
                 children: <Widget>[
-                  SizedBox(width: 50),
+                  SizedBox(width: 65),
                   Column(
                     children: [ 
                       Text('Edit Profile',style: TextStyle(fontSize: 25,color: Colors.white),),    
@@ -266,7 +266,7 @@ class _ChangeProfileState extends State<ChangeProfile> {
                       _buildName(),
                       SizedBox( height: 20.0 ),
                       _buildSurname(),
-                      SizedBox( height: 200.0 ),
+                      SizedBox( height: 50.0 ),
                       _buildConfirm()
                     ],
                   ),

@@ -50,7 +50,7 @@ class _MyPageState extends State<_MyPage> with AutomaticKeepAliveClientMixin {
         onTap: ()=>print('photo[$index]'),
         onLongPress: ()=>print('SSS'),
         child: Container(
-        margin: EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(5.0),
         child: Card(
           child: Row(
             children: <Widget>[
@@ -60,8 +60,8 @@ class _MyPageState extends State<_MyPage> with AutomaticKeepAliveClientMixin {
           _photoList[index],
           // Use small images to fit more on the screen at once
           // Shows the loading speed more clearly
-          width: 100.0,
-          height: 100.0,
+          width: 150.0,
+          height: 150.0,
           scale: 16.0,
           fit: BoxFit.contain,
         ),

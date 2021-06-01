@@ -83,17 +83,17 @@ class _MenuState extends State<Menu> {
                 ),
                 Text(
                   'Capture',
-                  style: TextStyle(),
+                  style: TextStyle(color: Colors.white),
                 )
               ],
             ),
             SizedBox(
-              width: 207,
+              width: 239,
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 0.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   _buildAc(
                     () => print('Login with Facebook'),
@@ -120,7 +120,7 @@ class _MenuState extends State<Menu> {
                     Row(
                       children: [
                         Text(
-                          '             รถที่ตรวจจับได้ทั้งหมด:',
+                          '                  รถที่ตรวจจับได้ทั้งหมด:',
                           style: TextStyle(
                             color: Colors.black,
                             fontFamily: 'OpenSans',
@@ -150,7 +150,7 @@ class _MenuState extends State<Menu> {
                     Row(
                       children: [
                         Text(
-                          '      รถที่คุณสามารถตรวจจับได้:',
+                          '          รถที่คุณสามารถตรวจจับได้:',
                           style: TextStyle(
                             color: Colors.black,
                             fontFamily: 'OpenSans',

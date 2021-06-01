@@ -224,7 +224,7 @@ class _SettingsState extends State<SettingsScreen> {
         ),
         title: Row(
           children: <Widget>[
-            SizedBox(width: 70),
+            SizedBox(width: 80),
             Column(
               children: [
                 Text(
@@ -261,7 +261,7 @@ class _SettingsState extends State<SettingsScreen> {
                       _buildFb(),
                       SizedBox(height: 10.0),
                       _buildAa(),
-                      SizedBox(height: 200.0),
+                      SizedBox(height: 150.0),
                       _buildAcc(), 
                       SizedBox(height: 10.0),
                       _buildCont(),
