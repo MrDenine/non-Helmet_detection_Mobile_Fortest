@@ -203,7 +203,7 @@ class _MenuState extends State<Menu> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           _buildSocialBtn(
-                            () => Navigator.pushNamed(context, '/five'),
+                            () => Navigator.pushNamed(context, '/six'),
                             AssetImage(
                               'assets/logos/upload.png',
                             ),

@@ -152,7 +152,8 @@ class _SettingsState extends State<SettingsScreen> {
             primary: Colors.red, minimumSize: Size(0, 45)),
         child: Text(
           'Log out',
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 20,color: Colors.white,
+                  fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -174,9 +175,9 @@ class _SettingsState extends State<SettingsScreen> {
             style: ElevatedButton.styleFrom(
                 primary: Colors.white, minimumSize: Size(0, 45)),
             child: Text(
-              'abcd@gmail.com',
+              'Click here for reporting the problem',
               style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),
@@ -260,10 +261,11 @@ class _SettingsState extends State<SettingsScreen> {
                       _buildFb(),
                       SizedBox(height: 10.0),
                       _buildAa(),
-                      SizedBox(height: 80.0),
+                      SizedBox(height: 200.0),
+                      _buildAcc(), 
+                      SizedBox(height: 10.0),
                       _buildCont(),
-                      _buildAcc(),
-                      SizedBox(height: 50.0),
+                      SizedBox(height: 10.0),
                       _buildLogout(),
                     ],
                   ),
