@@ -31,18 +31,18 @@ class MainScreen extends StatelessWidget {
         create: (context) => GoogleSignInProvider(),
         child: MaterialApp(
           theme: ThemeData(
-        primarySwatch: Colors.amber,
-      ),
-          /* initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
+            primarySwatch: Colors.amber,
+          ),
+          initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
           routes: {
             '/': (context) => LoginScreen(),
             '/two': (context) => CreateAccount(),
             '/three': (context) => Menu(),
             '/four': (context) => SettingsScreen(),
             '/five': (context) => ChangeProfile(),
-            '/five': (context) => Upload()
-          }, */
-          home: Upload(),
+            '/six': (context) => Upload()
+          },
+          //home: Upload(),
         ),
       );
 }

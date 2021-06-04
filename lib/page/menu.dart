@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:helmet_detection_app/camera_test_image_file/camera_take_picture.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -63,7 +64,6 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,7 +183,9 @@ class _MenuState extends State<Menu> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           _buildSocialBtn(
-                            () => _getImage(ImageSource.camera),
+                            () {
+                              getImage();
+                            },
                             AssetImage(
                               'assets/logos/camera.png',
                             ),
@@ -203,7 +205,7 @@ class _MenuState extends State<Menu> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           _buildSocialBtn(
-                            () => Navigator.pushNamed(context, '/five'),
+                            () => Navigator.pushNamed(context, '/six'),
                             AssetImage(
                               'assets/logos/upload.png',
                             ),
@@ -224,17 +226,4 @@ class _MenuState extends State<Menu> {
       ),
     );
   }
-
-  _getImage(ImageSource imageSource) async {
-    PickedFile imageFile = await picker.getImage(source: imageSource);
-
-    if (imageFile == null) return;
-
-    setState(
-      () {
-        _image = File(imageFile.path);
-      },
-    );
-  }
-  
 }
