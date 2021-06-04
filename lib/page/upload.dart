@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'notupload.dart';
+import 'uploaded.dart';
 
 
 class Upload extends StatefulWidget {
@@ -48,7 +49,7 @@ class _UploadState extends State<Upload> with SingleTickerProviderStateMixin {
         ),
       ),
       body: TabBarView(
-        children: <Widget>[NotUpload()],
+        children: <Widget>[NotUpload(),Uploaded()],
         controller: controller,
       ),
     );
