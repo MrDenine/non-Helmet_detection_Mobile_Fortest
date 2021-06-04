@@ -287,7 +287,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(
                     horizontal: 30.0,
-                    vertical: 11.0,
+                    vertical: 100.0,
                   ),
                   child: Form(
                     key: formKey,
@@ -314,7 +314,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 5.0),
+                        SizedBox(height: 20.0),
                         _buildEmailTF(),
                         SizedBox(
                           height: 10.0,

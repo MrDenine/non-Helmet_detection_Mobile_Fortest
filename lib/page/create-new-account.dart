@@ -251,7 +251,7 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
           Text(
             'I accept the terms of the argreement',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 15,color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -340,14 +340,15 @@ class _CreateAccountState extends State<CreateAccount> {
                 title: Row(
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(width: 80),
+                    SizedBox(width: 90),
                     Column(
                       children: [
                         Text(
                           'Helmet',
                           style: TextStyle(color: Colors.black),
                         ),
-                        Text('Capture'),
+                        Text('Capture',
+                          style: TextStyle(color: Colors.white)),
                       ],
                     )
                   ],
@@ -392,11 +393,11 @@ class _CreateAccountState extends State<CreateAccount> {
                                 _buildPasswordTF(),
                                 SizedBox(height: 10.0),
                                 _buildConfirmPassword(),
-                                SizedBox(height: 20.0),
-                                _buildShowPassword(),
                                 SizedBox(height: 10.0),
+                                _buildShowPassword(),
+                                SizedBox(height: 40.0),
                                 _buildAcceptCheckbox(),
-                                SizedBox(height: 20.0),
+                                SizedBox(height: 10.0),
                                 _buildCreateAccountBtn()
                               ],
                             ),

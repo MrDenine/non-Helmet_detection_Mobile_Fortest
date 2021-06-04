@@ -9,7 +9,6 @@ import 'package:helmet_detection_app/page/menu.dart';
 import 'package:provider/provider.dart';
 import 'page/create-new-account.dart';
 import 'page/login.dart';
-import 'page/upload.dart';
 
 List<CameraDescription> cameras;
 
@@ -40,9 +39,8 @@ class MainScreen extends StatelessWidget {
             '/three': (context) => Menu(),
             '/four': (context) => SettingsScreen(),
             '/five': (context) => ChangeProfile(),
-            '/six': (context) => Upload()
           },
-          //home: Upload(),
+          /*  home: Upload(), */
         ),
       );
 }
