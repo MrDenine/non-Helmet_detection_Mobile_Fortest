@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:helmet_detection_app/capture_detection/HomeScreenCamera.dart';
+import 'package:helmet_detection_app/capture_detection/capture_other.dart';
 import 'package:helmet_detection_app/page/changeprofile.dart';
 import 'package:helmet_detection_app/provider/google_service.dart';
 import 'package:helmet_detection_app/page/settings.dart';
@@ -32,15 +33,15 @@ class MainScreen extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.amber,
           ),
-          initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
-          routes: {
-            '/': (context) => LoginScreen(),
-            '/two': (context) => CreateAccount(),
-            '/three': (context) => Menu(),
-            '/four': (context) => SettingsScreen(),
-            '/five': (context) => ChangeProfile(),
-          },
-          /*  home: Upload(), */
+          // initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
+          // routes: {
+          //   '/': (context) => LoginScreen(),
+          //   '/two': (context) => CreateAccount(),
+          //   '/three': (context) => Menu(),
+          //   '/four': (context) => SettingsScreen(),
+          //   '/five': (context) => ChangeProfile(),
+          // },
+          home: HomeScreen(cameras),
         ),
       );
 }

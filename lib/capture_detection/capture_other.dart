@@ -46,8 +46,8 @@ class TfliteHomeState extends State<TfliteHome> {
             labels: "assets\tflite\my_model.txt");
       } else {
         res = await Tflite.loadModel(
-            model: "assets/tflite/ssd_moblienet.tflite",
-            labels: "assets/tflite/ssd_moblienet.txt");
+            model: "aassets\tflite\my_model.tflite",
+            labels: "assets\tflite\my_model.txt");
       }
       print(res);
     } on PlatformException {

@@ -5,7 +5,7 @@ import 'package:helmet_detection_app/capture_detection/Camera.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 
-const String ssd = "SSD MobileNet";
+const String ssd = "My model";
 
 class HomeScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
