@@ -42,26 +42,48 @@ class _MyPageState extends State<_MyPage> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     List<FileSystemEntity> _photoList;
     String pickedDate;
-    
+    String Lat;
+    String Long;
      Widget buildPhoto(int index) {
-
+        //////////////////////////////////////////////////////////////////////////////โชว์ข้อมูลรูป
         Future<Widget> _dateViewerX(index) async{
          final tags =  await readExifFromFile( _photoList[index]);
         String dateTime = tags['Image DateTime'].toString();
-        pickedDate = dateTime;
-        return Container(
-            margin: EdgeInsets.symmetric(
-              vertical: 20
-            ),
-            child: pickedDate != null
-                ? Text("$pickedDate")
-                : Text("EXIFは未取得です")
-          );
-        }
-       
+        pickedDate = dateTime ;
+        /////////////////////////////////// พิกัด
+        final latitudeValue = tags['GPS GPSLatitude'].values.map<double>( (item) => (item.numerator.toDouble() / item.denominator.toDouble()) ).toList();
+        final latitudeSignal = tags['GPS GPSLatitudeRef'].printable;
+        final longitudeValue = tags['GPS GPSLongitude'].values.map<double>( (item) => (item.numerator.toDouble() / item.denominator.toDouble()) ).toList();
+         final longitudeSignal = tags['GPS GPSLongitudeRef'].printable;
+
+          double latitude = latitudeValue[0]
+            + (latitudeValue[1] / 60)
+            + (latitudeValue[2] / 3600);
+
+          double longitude = longitudeValue[0]
+            + (longitudeValue[1] / 60)
+            + (longitudeValue[2] / 3600);
+
+            if (latitudeSignal == 'S') latitude = -latitude;
+            if (longitudeSignal == 'W') longitude = -longitude;
+             Lat = latitude.toStringAsFixed(3);
+             Long = longitude.toStringAsFixed(3);
+            print(Lat);print(Long);
+        //////////////////////////////////////
+          return Container(
+              /* margin: EdgeInsets.symmetric(
+                vertical: 20
+              ),
+              child: pickedDate != null
+                  ? Text("$pickedDate")
+                  : Text("EXIFは未取得です") */
+            );
+      }
+    //////////////////////////////////////////////////////////////////////////////////////////
       if (index >= _photoList.length) {
         return null;
       }
+
        Future<int> deleteFile(index) async {
         try {
           await _photoList[index].delete();
@@ -73,6 +95,7 @@ class _MyPageState extends State<_MyPage> with AutomaticKeepAliveClientMixin {
           
         });
       }
+
       print('Loading photo[$index]: ${_photoList[index]}... done');
       return new GestureDetector(
         onTap: ()=>print('photo[$index]'),
@@ -100,16 +123,9 @@ class _MyPageState extends State<_MyPage> with AutomaticKeepAliveClientMixin {
                   mainAxisSize:MainAxisSize.min,
                   crossAxisAlignment:CrossAxisAlignment.start,
                   children: <Widget>[
-                    
-                    Text(
-                      "ข้อมูลรูปภาพ",
-                      style: TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ), 
-                    Row (
-                      children: [
+                
                         Text("วันที่",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
+                        style: TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.bold),
                         textAlign: TextAlign.left),
                         SizedBox(width: 10,),
                         FutureBuilder<Widget>(
@@ -124,19 +140,30 @@ class _MyPageState extends State<_MyPage> with AutomaticKeepAliveClientMixin {
                               : Text("not received")
                              )
                            )
+                        ),
+                        Text("ละติจูด, ลองติจูด",
+                        style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left),
+                        SizedBox(width: 1,),
+                        FutureBuilder<Widget>(
+                           future: _dateViewerX(index),
+                           builder: (context, snapshot) => (
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                              vertical: 1
+                            ),
+                              child: pickedDate != null
+                              ?  TextButton(
+                                  style: TextButton.styleFrom(
+                                    textStyle: const TextStyle(fontSize: 14),
+                                  ),
+                                  onPressed: () => print('ลิงก์ไปยังแผนที่'),
+                                  child: Text('$Lat, $Long',style: TextStyle(color: Colors.red),),
+                                )
+                              : Text("not received")
+                             )
+                           )
                         )
-                      ],
-                    ),              
-                    Text(
-                      "เวลา",
-                      style: TextStyle(color: Colors.black, fontSize: 14),
-                      textAlign: TextAlign.left,
-                    ),
-                    Text(
-                      "ละติจูด, ลองติจูด",
-                      style: TextStyle(color: Colors.black, fontSize: 14),
-                      textAlign: TextAlign.left,
-                    ),
                     
                   ],
                 ),
@@ -205,6 +232,7 @@ class _MyPageState extends State<_MyPage> with AutomaticKeepAliveClientMixin {
       ),
     );
   }
+  
   
 }
 

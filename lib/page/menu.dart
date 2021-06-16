@@ -88,7 +88,7 @@ class _MenuState extends State<Menu> {
               ],
             ),
             SizedBox(
-              width: 239,
+              width: 200,
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 0.0),
@@ -184,14 +184,14 @@ class _MenuState extends State<Menu> {
                         children: <Widget>[
                           _buildSocialBtn(
                             () {
-                              getImage();
+                              getImage();/* getVideo(); */
                             },
                             AssetImage(
                               'assets/logos/camera.png',
                             ),
                           ),
                           _buildSocialBtn(
-                            () => print('Gallery'),
+                            () => Navigator.pushNamed(context, '/seven'),
                             AssetImage(
                               'assets/logos/gallery.png',
                             ),

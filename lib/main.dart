@@ -9,7 +9,9 @@ import 'package:helmet_detection_app/page/settings.dart';
 import 'package:helmet_detection_app/page/menu.dart';
 import 'package:provider/provider.dart';
 import 'page/create-new-account.dart';
+import 'page/gallery.dart';
 import 'page/login.dart';
+import 'page/upload.dart';
 
 List<CameraDescription> cameras;
 
@@ -33,15 +35,17 @@ class MainScreen extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.amber,
           ),
-          // initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
-          // routes: {
-          //   '/': (context) => LoginScreen(),
-          //   '/two': (context) => CreateAccount(),
-          //   '/three': (context) => Menu(),
-          //   '/four': (context) => SettingsScreen(),
-          //   '/five': (context) => ChangeProfile(),
-          // },
-          home: HomeScreen(cameras),
+           initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
+           routes: {
+             '/': (context) => LoginScreen(),
+             '/two': (context) => CreateAccount(),
+             '/three': (context) => Menu(),
+            '/four': (context) => SettingsScreen(),
+             '/five': (context) => ChangeProfile(),
+             '/six': (context) => Upload(),
+             '/seven': (context) => Gallery(),
+           },
+          /* home: HomeScreen(cameras), */
         ),
       );
 }
