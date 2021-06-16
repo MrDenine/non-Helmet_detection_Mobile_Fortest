@@ -184,7 +184,8 @@ class _MenuState extends State<Menu> {
                         children: <Widget>[
                           _buildSocialBtn(
                             () {
-                              getImage();/* getVideo(); */
+                              //getImage();
+                              getVideo();
                             },
                             AssetImage(
                               'assets/logos/camera.png',

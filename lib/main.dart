@@ -35,16 +35,16 @@ class MainScreen extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.amber,
           ),
-           initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
-           routes: {
-             '/': (context) => LoginScreen(),
-             '/two': (context) => CreateAccount(),
-             '/three': (context) => Menu(),
+          initialRoute: '/', ////เวลารันหน้าอื่นปิดโค้ดนี้ไว้นะไม่ต้องลบออก////
+          routes: {
+            '/': (context) => LoginScreen(),
+            '/two': (context) => CreateAccount(),
+            '/three': (context) => Menu(),
             '/four': (context) => SettingsScreen(),
-             '/five': (context) => ChangeProfile(),
-             '/six': (context) => Upload(),
-             '/seven': (context) => Gallery(),
-           },
+            '/five': (context) => ChangeProfile(),
+            '/six': (context) => Upload(),
+            '/seven': (context) => Gallery(),
+          },
           /* home: HomeScreen(cameras), */
         ),
       );
