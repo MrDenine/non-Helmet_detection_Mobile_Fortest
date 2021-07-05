@@ -199,7 +199,7 @@ class _ChangeProfileState extends State<ChangeProfile> {
              title: Row(
                 /* mainAxisAlignment: MainAxisAlignment.center,  */
                 children: <Widget>[
-                  SizedBox(width: 65),
+                  SizedBox(width: 60),
                   Column(
                     children: [ 
                       Text('Edit Profile',style: TextStyle(fontSize: 25,color: Colors.white),),    

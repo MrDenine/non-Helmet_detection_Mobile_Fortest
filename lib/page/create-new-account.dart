@@ -340,7 +340,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 title: Row(
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(width: 90),
+                    SizedBox(width: 80),
                     Column(
                       children: [
                         Text(

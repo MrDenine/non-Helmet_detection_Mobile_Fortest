@@ -224,7 +224,7 @@ class _SettingsState extends State<SettingsScreen> {
         ),
         title: Row(
           children: <Widget>[
-            SizedBox(width: 80),
+            SizedBox(width: 70),
             Column(
               children: [
                 Text(
